@@ -21,7 +21,7 @@ readonly class ItemService
     {
         // Delete existing image if present
         if ($itemEntity->getImage() !== null) {
-            $this->imageUploadService->delete($itemEntity->getImage()['public_id']);
+            $this->imageUploadService->delete($itemEntity->getImage()['publicId']);
         }
 
         // Upload new image
@@ -34,7 +34,7 @@ readonly class ItemService
     public function removeImage(ItemEntity $itemEntity): void
     {
         if ($itemEntity->getImage() !== null) {
-            $this->imageUploadService->delete($itemEntity->getImage()['public_id']);
+            $this->imageUploadService->delete($itemEntity->getImage()['publicId']);
             $itemEntity->setImage(null);
             $this->entityManager->flush();
         }
