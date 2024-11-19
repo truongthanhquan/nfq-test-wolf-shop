@@ -4,6 +4,13 @@
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices.html#use-parameters-for-application-configuration
 parameters:
+    app.api.base_url: '%env(API_BASE_URL)%'
+    app.api.endpoints.items: 'objects'
+
+    cloudinary.cloud_name: '%env(CLOUDINARY_CLOUD_NAME)%'
+    cloudinary.api_key: '%env(CLOUDINARY_API_KEY)%'
+    cloudinary.api_secret: '%env(CLOUDINARY_API_SECRET)%'
+
 
 services:
     # default configuration for services in *this* file
@@ -19,6 +26,14 @@ services:
             - '../src/DependencyInjection/'
             - '../src/Entity/'
             - '../src/Kernel.php'
+
+    Cloudinary\Cloudinary:
+        arguments:
+            -
+                cloud:
+                    cloud_name: '%cloudinary.cloud_name%'
+                    api_key: '%cloudinary.api_key%'
+                    api_secret: '%cloudinary.api_secret%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones

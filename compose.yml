@@ -1,0 +1,43 @@
+services:
+  php:
+    build: ./docker/php
+    volumes:
+      - .:/var/www:cached
+      - nfq_test_var:/var/www/var
+      - nfq_test_vendor:/var/www/vendor
+    networks:
+      - nfq_test
+
+  nginx:
+    build: ./docker/nginx
+    volumes:
+      - .:/var/www:cached
+      - nfq_test_var:/var/www/var
+      - nfq_test_vendor:/var/www/vendor
+    environment:
+      NGINX_BACKEND_DOMAIN: ${NGINX_BACKEND_DOMAIN:-nfq-test.example.vn}
+    ports:
+      - 80:80
+    networks:
+      - nfq_test
+
+  mysql:
+    image: mysql
+    volumes:
+      - "nfq_test_db:/var/lib/mysql"
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-root}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-nfq_test_wolf_shop}
+      MYSQL_USER: ${MYSQL_USER:-nfq}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-password}
+    networks:
+      - nfq_test
+
+
+volumes:
+  nfq_test_var:
+  nfq_test_vendor:
+  nfq_test_db:
+
+networks:
+  nfq_test:
