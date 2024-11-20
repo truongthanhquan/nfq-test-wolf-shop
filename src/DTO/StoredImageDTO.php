@@ -13,7 +13,7 @@ class StoredImageDTO
         public ?int $width,
         public ?int $height,
         public ?string $format,
-        public ?\DateTimeImmutable $createdAt = null
+        public ?string $createdAt = null
     ) {
     }
 }

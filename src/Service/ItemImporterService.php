@@ -11,14 +11,14 @@ use App\Repository\ItemEntityRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\Console\Exception\RuntimeException;
 
-readonly class ItemImporterService
+class ItemImporterService
 {
     public function __construct(
-        private ApiItemService $itemApiService,
-        private ItemEntityFactory $itemEntityFactory,
-        private ItemEntityRepository $itemEntityRepository,
-        private ItemQualityUpdaterService $itemQualityUpdater,
-        private EntityManagerInterface $entityManager
+        private readonly ApiItemService $itemApiService,
+        private readonly ItemEntityFactory $itemEntityFactory,
+        private readonly ItemEntityRepository $itemEntityRepository,
+        private readonly ItemQualityUpdaterService $itemQualityUpdater,
+        private readonly EntityManagerInterface $entityManager
     ) {
     }
 

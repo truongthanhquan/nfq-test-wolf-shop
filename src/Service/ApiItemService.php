@@ -11,10 +11,10 @@ use Symfony\Component\DependencyInjection\Attribute\Autowire;
 class ApiItemService
 {
     public function __construct(
-        private readonly ApiClient $apiClient,
-        private readonly ApiItemDTOFactory $factory,
+        private ApiClient $apiClient,
+        private ApiItemDTOFactory $factory,
         #[Autowire('%app.api.endpoints.items%')]
-        private readonly string $itemsEndpoint,
+        private string $itemsEndpoint,
     ) {
     }
 

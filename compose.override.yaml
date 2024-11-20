@@ -1,0 +1,13 @@
+
+services:
+  php:
+    volumes:
+      - ./vendor:/var/www/vendor
+  nginx:
+    volumes:
+      - ./vendor:/var/www/vendor
+    ports:
+      - 8181:80
+  mysql:
+    ports:
+      - 3308:3306
